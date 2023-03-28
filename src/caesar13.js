@@ -16,37 +16,37 @@ function caesar13(input) {
   const endUpperCase = 122
 
   msg.forEach((letter) => {
-    // Uppercase
-    if (letter.charCodeAt() === 32) {
+    const charCode = letter.charCodeAt()
+    // Check if it is a space character
+    if (charCode === 32) {
       result.push(' ')
-    } else if (letter.charCodeAt() < endLowerCase + 1) {
-      if ((letter.charCodeAt() + shift) % (endLowerCase + 1) < startLowerCase) {
-        result.push(
-          String.fromCharCode(
-            ((letter.charCodeAt() + shift) % (endLowerCase + 1)) +
-              startLowerCase
-          )
-        )
+    // Check if it is a letter
+    } else if ((charCode < 65) || (charCode > 90 && charCode < 97) || (charCode > 122)) {
+      throw new Error("Message should only contain strings or spaces!")
+    // Uppercase
+    } else if (charCode < endLowerCase + 1) {
+      if ((charCode + shift) % (endLowerCase + 1) < startLowerCase) {
+          result.push(String.fromCharCode(((charCode + shift) % (endLowerCase + 1)) + startLowerCase))
       } else {
         result.push(
           String.fromCharCode(
-            (letter.charCodeAt() + shift) % (endLowerCase + 1)
+            (charCode + shift) % (endLowerCase + 1)
           )
         )
       }
       // Lowercase
     } else {
-      if ((letter.charCodeAt() + shift) % (endUpperCase + 1) < startUpperCase) {
+      if ((charCode + shift) % (endUpperCase + 1) < startUpperCase) {
         result.push(
           String.fromCharCode(
-            ((letter.charCodeAt() + shift) % (endUpperCase + 1)) +
+            ((charCode + shift) % (endUpperCase + 1)) +
               startUpperCase
           )
         )
       } else {
         result.push(
           String.fromCharCode(
-            (letter.charCodeAt() + shift) % (endUpperCase + 1)
+            (charCode + shift) % (endUpperCase + 1)
           )
         )
       }

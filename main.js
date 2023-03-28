@@ -11,9 +11,11 @@ const encryptMessage = (e) => {
     return alert('You have to enter message to encrypt')
   } else if (!isNaN(msg)) {
     return alert('Message should be a string')
-  } else {
+  }
+  try {
     encrypted.innerHTML = caesar13(msg)
-    console.log(caesar13(msg))
+  } catch (error) {
+    return alert(error)
   }
 }
 
