@@ -14,6 +14,7 @@ const encryptMessage = (e) => {
   }
   try {
     encrypted.innerHTML = caesar13(msg)
+    console.log(caesar13(msg))
   } catch (error) {
     return alert(error)
   }
